@@ -2,6 +2,7 @@ import Link from 'next/link';
 import styles from './Navbar.module.css';
 import { RiAliensFill } from 'react-icons/ri';
 import { BsSearch } from 'react-icons/bs';
+import Button from '../Button';
 
 const Navbar = () => {
   return (
@@ -22,6 +23,7 @@ const Navbar = () => {
           className={styles.searchInput}
         />
       </div>
+      <Button label="Log In"/>
     </nav>
   )
 }
