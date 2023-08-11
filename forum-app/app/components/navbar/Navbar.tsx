@@ -23,7 +23,7 @@ const Navbar = () => {
           className={styles.searchInput}
         />
       </div>
-      <Button label="Log In"/>
+      <Button label="Log In" />
     </nav>
   )
 }

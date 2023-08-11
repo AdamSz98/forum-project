@@ -30,13 +30,13 @@
 }
 
 .searchBar {
-  width: fill;
+  width: stretch;
   position: relative;
   margin: 0 25px;
 }
 
 .searchInput {
-  width: fill;
+  width: stretch;
   height: 40px;
   border: none;
   background-color: #f0ecec;

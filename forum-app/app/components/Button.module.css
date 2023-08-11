@@ -1,11 +1,35 @@
 .button {
   width: 80px;
   height: 40px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 20px;
-  background: #05386B;
   color: #fff;
   cursor: pointer;
+
+  background: linear-gradient(to left, #05386B 50%, #fff 50%) right;
+  background-size: 200%;
+  transition: .5s ease-out;
+}
+
+.button:hover {
+  background-position: left;
+  color: #05386B;
+  border: 1px solid #05386B;
+}
+
+.button:active {
+  opacity: 0.5;
+}
+
+.button:disabled {
+  background: #05386B;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.button:disabled:hover {
+  color: #fff;
+  border: none;
 }

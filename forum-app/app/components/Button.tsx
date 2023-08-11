@@ -5,14 +5,20 @@ type ButtonType = "button" | "submit" | "reset";
 interface ButtonProps {
   label: string;
   type?: ButtonType;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
-  type
+  type,
+  disabled
 }) => {
   return (
-    <button type={type} className={styles.button}>
+    <button 
+      type={type} 
+      disabled={disabled}
+      className={styles.button}
+    >
       {label}
     </button>
   )
