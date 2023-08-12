@@ -18,6 +18,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "react-icons": "^4.10.1"
+    "react-icons": "^4.10.1",
+    "zustand": "^4.4.1"
   }
 }

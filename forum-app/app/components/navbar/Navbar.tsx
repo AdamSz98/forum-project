@@ -1,10 +1,14 @@
+'use client';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 import { RiAliensFill } from 'react-icons/ri';
 import { BsSearch } from 'react-icons/bs';
 import Button from '../Button';
+import { useStore } from '../../lib/store';
 
 const Navbar = () => {
+  const setModalOpen = useStore((store: any) => store.setModalOpen);
+
   return (
     <nav className={styles.navbar}>
       <Link href="/" className={styles.logoContainer}>
@@ -24,7 +28,7 @@ const Navbar = () => {
         />
       </div>
       <div className={styles.btnBox}>
-        <Button label="Log In" />
+        <Button label="Log In" onClick={setModalOpen}/>
       </div>
     </nav>
   )
