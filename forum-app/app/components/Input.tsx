@@ -11,11 +11,12 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className={styles.formControl}>
-      <label className={styles.label}>{label}</label>
       <input 
         className={styles.input}
         type={type}
+        placeholder=""
       />
+      <label className={styles.label}>{label}</label>
     </div>
   )
 }

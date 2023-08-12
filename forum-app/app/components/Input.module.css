@@ -1,0 +1,39 @@
+.formControl {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.label {
+  position: absolute;
+  font-size: 17px;
+  top: 18px;
+  left: 15px;
+  pointer-events: none;
+  transition: all 0.5s;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.input {
+  width: calc(100% - 15px);
+  height: 100%;
+  border-radius: 40px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: #f6f7f8;
+  padding-left: 15px;
+  padding-top: 15px;
+  font-size: 17px;
+}
+
+.input:hover + .label,
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  top: 7px;
+  font-size: 12px;
+}
+
+.input:hover, .input:focus {
+  border: 1px solid lightgray;
+  outline: none;
+}
