@@ -23,7 +23,9 @@ const Navbar = () => {
           className={styles.searchInput}
         />
       </div>
-      <Button label="Log In" />
+      <div className={styles.btnBox}>
+        <Button label="Log In" />
+      </div>
     </nav>
   )
 }

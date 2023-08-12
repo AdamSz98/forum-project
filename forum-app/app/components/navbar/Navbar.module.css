@@ -60,6 +60,11 @@
   outline: none;
 }
 
+.btnBox {
+  width: 80px;
+  height: 40px;
+}
+
 @media (min-width: 960px) {
   .title {
     margin-left: 5px;

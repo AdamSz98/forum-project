@@ -10,8 +10,7 @@
 }
 
 .modal {
-  width: 400px;
-  height: 600px;
+  width: 450px;
   background-color: #FFF;
   border-radius: 20px;
 }
@@ -29,5 +28,5 @@
 }
 
 .container {
-  padding: 0 70px 40px;
+  padding: 0 80px 80px;
 }

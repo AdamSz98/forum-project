@@ -1,3 +1,4 @@
+import Button from '../Button';
 import Input from '../Input';
 import Modal from './Modal'
 import styles from './RegisterModal.module.css';
@@ -18,6 +19,7 @@ const RegisterModal = () => {
           <Input label="Email Address" /> 
           <Input label="Password" type="password" />
           <Input label="Confirm Password" type="password" />
+          <Button label="Sign Up" type="submit" disabled={true}/>
         </form>
       </div>
     </Modal>
