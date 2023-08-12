@@ -1,6 +1,10 @@
 import Button from '../Button';
 import Input from '../Input';
 import styles from './RegisterForm.module.css';
+import { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 interface RegisterFormProps {
   switchFunc: any;
@@ -9,6 +13,44 @@ interface RegisterFormProps {
 const RegisterForm: React.FC<RegisterFormProps> = ({
   switchFunc
 }) => {
+  const [errorMsg, setErrorMsg] = useState('err');
+  const [errorVisibility, setErrorVisibility] = useState(false);
+
+
+
+  const schema = yup.object().shape({
+    username: yup.string().required().min(4),
+    email: yup.string().email().required(),
+    password: yup.string().required().min(6),
+    confirmPassword: yup.string().required().oneOf([yup.ref("password")])
+  });
+  
+  const checkErrors = () => {
+    if(errors.username) {
+      setErrorMsg("Username must be at least 4 characters.");
+      setErrorVisibility(true);
+    } else if (errors.email) {
+      setErrorMsg("Please provide a valid email address!");
+      setErrorVisibility(true);
+    } else if (errors.password) {
+      setErrorMsg("The password must be at least 6 characters.");
+      setErrorVisibility(true);
+    } else if (errors.confirmPassword) {
+      setErrorMsg("The passwords doesn't seem to match.");
+      setErrorVisibility(true);
+    } else {
+      setErrorVisibility(false);
+    }
+  }
+
+  const { register, handleSubmit, formState: {errors} } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  }
+
   return (
     <>
       <div className={styles.header}>
@@ -19,12 +61,25 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         </p>
       </div>
       <div>
-        <form>
-          <Input label="Username" />
-          <Input label="Email Address" /> 
-          <Input label="Password" type="password" />
-          <Input label="Confirm Password" type="password" />
-          <Button label="Sign Up" type="submit" disabled={true}/>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Input label="Username" name="username" register={register} />
+          <Input label="Email Address" name="email" register={register} /> 
+          <Input 
+            label="Password" 
+            type="password"  
+            name="password" 
+            register={register}
+          />
+          <Input 
+            label="Confirm Password" 
+            type="password" 
+            name="confirmPassword" 
+            register={register} 
+          />
+          <p className={!errorVisibility ? styles.errorMsg : styles.visibleErr}>
+            {errorMsg}
+          </p>
+          <Button label="Sign Up" type="submit" onClick={checkErrors}/>
         </form>
       </div>
       <div className={styles.footer}>
