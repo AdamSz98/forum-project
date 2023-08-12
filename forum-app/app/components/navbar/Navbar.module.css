@@ -4,6 +4,7 @@
   margin: 0 10px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .logoContainer {
@@ -33,6 +34,7 @@
   width: stretch;
   position: relative;
   margin: 0 25px;
+  max-width: 600px;
 }
 
 .searchInput {

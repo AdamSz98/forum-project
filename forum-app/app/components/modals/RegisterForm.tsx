@@ -1,15 +1,16 @@
-'use client';
 import Button from '../Button';
 import Input from '../Input';
-import Modal from './Modal'
-import styles from './RegisterModal.module.css';
-import { useStore } from '../../lib/store';
+import styles from './RegisterForm.module.css';
 
-const RegisterModal = () => {
-  const isOpen = useStore((store: any) => store.modalOpen);
+interface RegisterFormProps {
+  switchFunc: any;
+}
 
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  switchFunc
+}) => {
   return (
-    <Modal isOpen={isOpen} >
+    <>
       <div className={styles.header}>
         <h2 className={styles.title}>Sign Up</h2>
         <p className={styles.description}>
@@ -27,12 +28,12 @@ const RegisterModal = () => {
         </form>
       </div>
       <div className={styles.footer}>
-        <p className={styles.description}>
+        <p className={styles.description} onClick={() => {switchFunc('login')}}>
           Already have an account? <span className={styles.link}>Log In</span>
         </p>
       </div>
-    </Modal>
+    </>
   )
 }
 
-export default RegisterModal;
+export default RegisterForm;
