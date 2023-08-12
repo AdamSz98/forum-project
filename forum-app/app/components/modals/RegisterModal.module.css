@@ -13,3 +13,13 @@
 .description {
   font-size: 14px;
 }
+
+.footer {
+  margin-top: 20px;
+}
+
+.link {
+  text-decoration: underline;
+  color: #05386B;
+  cursor: pointer;
+}

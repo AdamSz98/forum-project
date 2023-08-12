@@ -29,8 +29,8 @@
 .input:hover + .label,
 .input:focus + .label,
 .input:not(:placeholder-shown) + .label {
-  top: 6px;
-  font-size: 11px;
+  top: 5px;
+  font-size: 10px;
 }
 
 .input:hover, .input:focus {

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Button from '../Button';
 import Input from '../Input';
 import Modal from './Modal'
@@ -21,6 +22,11 @@ const RegisterModal = () => {
           <Input label="Confirm Password" type="password" />
           <Button label="Sign Up" type="submit" disabled={true}/>
         </form>
+      </div>
+      <div className={styles.footer}>
+        <p className={styles.description}>
+          Already have an account? <span className={styles.link}>Log In</span>
+        </p>
       </div>
     </Modal>
   )
