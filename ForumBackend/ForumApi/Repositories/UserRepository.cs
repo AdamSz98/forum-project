@@ -25,5 +25,13 @@
         {
             return _context.Users.Any(u => u.Email == email);
         }
+        public Task<User> GetUserByUsername(string username)
+        {
+            return _context.Users.FirstOrDefaultAsync(u => u.Username == username)!;
+        }
+        public Task<User> GetUserByEmail(string email)
+        {
+            return _context.Users.FirstOrDefaultAsync(u => u.Email == email)!;
+        }
     }
 }
