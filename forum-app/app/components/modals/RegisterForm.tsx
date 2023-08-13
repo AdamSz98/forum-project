@@ -1,10 +1,11 @@
 import Button from '../Button';
 import Input from '../Input';
 import styles from './RegisterForm.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import axios from 'axios';
 
 interface RegisterFormProps {
   switchFunc: any;
@@ -15,8 +16,6 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
 }) => {
   const [errorMsg, setErrorMsg] = useState('err');
   const [errorVisibility, setErrorVisibility] = useState(false);
-
-
 
   const schema = yup.object().shape({
     username: yup.string().required().min(4),
@@ -47,8 +46,20 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      const response = await axios({
+        method: "post",
+        url: "/api/users/register",
+        data: data,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+    } catch (err) {
+      console.log("Error:", err);
+    }
   }
 
   return (
