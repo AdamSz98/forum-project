@@ -64,5 +64,39 @@
                 return Problem(ex.Message);
             }
         }
+
+        [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<string>> Login(UserLoginDto userInput)
+        {
+
+            if (string.IsNullOrEmpty(userInput.Email) && string.IsNullOrEmpty(userInput.Username))
+            {
+                return BadRequest("Error: Please provide your E-mail address or username.");
+            }
+
+            var loginCreds = _mapper.Map<User>(userInput);
+            var user = await _userRepo.GetUserByEmail(loginCreds.Email);
+
+            if (string.IsNullOrEmpty(loginCreds.Email))
+            {
+                user = await _userRepo.GetUserByUsername(userInput.Username!);
+            }
+
+            if (user == null)
+            {
+                return NotFound("Error: Wrong Credentials.");
+            }
+
+            if (!_userHelper.VerifyPasswordHash(loginCreds.Password, user.Password))
+            {
+                return NotFound("Error: Wrong Credentials.");
+            }
+            string token = _userHelper.CreateToken(user);
+
+            return Ok(token);
+        }
     }
 }

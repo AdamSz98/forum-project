@@ -10,7 +10,7 @@
         [EmailAddress]
         public string? Email { get; set; }
         [JsonPropertyName("password")]
-        [StringLength(maximumLength: 128, MinimumLength = 8)]
+        [StringLength(maximumLength: 128, MinimumLength = 6)]
         public string Password { get; set; } = string.Empty;
     }
 }
