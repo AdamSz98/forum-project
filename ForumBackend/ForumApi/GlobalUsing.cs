@@ -4,3 +4,4 @@ global using Microsoft.EntityFrameworkCore;
 
 global using ForumApi.Data;
 global using ForumApi.Models;
+global using ForumApi.Repositories;
