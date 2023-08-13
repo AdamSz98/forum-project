@@ -9,6 +9,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserHelper, UserHelper>();
 
 var app = builder.Build();
 
