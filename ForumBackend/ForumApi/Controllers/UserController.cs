@@ -72,17 +72,19 @@
         public async Task<ActionResult<string>> Login(UserLoginDto userInput)
         {
 
-            if (string.IsNullOrEmpty(userInput.Email) && string.IsNullOrEmpty(userInput.Username))
+            if (string.IsNullOrEmpty(userInput.Identifier))
             {
                 return BadRequest("Error: Please provide your E-mail address or username.");
             }
 
-            var loginCreds = _mapper.Map<User>(userInput);
-            var user = await _userRepo.GetUserByEmail(loginCreds.Email);
+            var user = new User();
 
-            if (string.IsNullOrEmpty(loginCreds.Email))
+            if (_userRepo.UsernameExists(userInput.Identifier))
             {
-                user = await _userRepo.GetUserByUsername(userInput.Username!);
+                user = await _userRepo.GetUserByUsername(userInput.Identifier);
+            } else if (_userRepo.EmailExists(userInput.Identifier))
+            {
+                user = await _userRepo.GetUserByEmail(userInput.Identifier);
             }
 
             if (user == null)
@@ -90,7 +92,7 @@
                 return NotFound("Error: Wrong Credentials.");
             }
 
-            if (!_userHelper.VerifyPasswordHash(loginCreds.Password, user.Password))
+            if (!_userHelper.VerifyPasswordHash(userInput.Password, user.Password))
             {
                 return NotFound("Error: Wrong Credentials.");
             }

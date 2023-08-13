@@ -2,13 +2,9 @@
 {
     public class UserLoginDto
     {
-        [JsonPropertyName("username")]
+        [JsonPropertyName("identifier")]
         [StringLength(maximumLength: 128, MinimumLength = 3)]
-        public string? Username { get; set; }
-        [JsonPropertyName("email")]
-        [StringLength(maximumLength: 128, MinimumLength = 3)]
-        [EmailAddress]
-        public string? Email { get; set; }
+        public string Identifier { get; set; } = string.Empty;
         [JsonPropertyName("password")]
         [StringLength(maximumLength: 128, MinimumLength = 6)]
         public string Password { get; set; } = string.Empty;
