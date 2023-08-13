@@ -18,7 +18,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   const [errorVisibility, setErrorVisibility] = useState(false);
 
   const schema = yup.object().shape({
-    username: yup.string().required().min(4),
+    username: yup.string().required().min(3),
     email: yup.string().email().required(),
     password: yup.string().required().min(6),
     confirmPassword: yup.string().required().oneOf([yup.ref("password")])
@@ -26,7 +26,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
   
   const checkErrors = () => {
     if(errors.username) {
-      setErrorMsg("Username must be at least 4 characters.");
+      setErrorMsg("Username must be at least 3 characters.");
       setErrorVisibility(true);
     } else if (errors.email) {
       setErrorMsg("Please provide a valid email address!");
@@ -56,9 +56,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
           "Content-Type": "application/json",
         },
       });
-      console.log(response);
-    } catch (err) {
-      console.log("Error:", err);
+    } catch (err: any) {
+      if(err.response.data) {
+        setErrorMsg(err.response.data);
+        setErrorVisibility(true);
+      } else {
+        console.log(err);
+      }
     }
   }
 

@@ -27,29 +27,29 @@
                 || string.IsNullOrEmpty(inputUser.Password)
             )
             {
-                return BadRequest("Error: All required fields need to be filled in.");
+                return BadRequest("All required fields need to be filled in.");
             }
 
             if (inputUser.Password.Length < 6)
             {
-                return BadRequest("Error: Password needs to be at least 6 characters long.");
+                return BadRequest("Password needs to be at least 6 characters long.");
             }
 
             if (!_userHelper.IsValidEmail(inputUser.Email))
             {
-                return BadRequest("Error: E-mail address given is invalid.");
+                return BadRequest("E-mail Address given is invalid.");
             }
 
             var user = _mapper.Map<User>(inputUser);
 
             if (_userRepo.UsernameExists(user.Username))
             {
-                return Conflict("Error: Username already exists.");
+                return Conflict("Username already exists.");
             }
 
             if (_userRepo.EmailExists(user.Email))
             {
-                return Conflict("Error: E-mail address given is already in use.");
+                return Conflict("E-mail Address given is already in use.");
             }
 
             try
@@ -74,7 +74,7 @@
 
             if (string.IsNullOrEmpty(userInput.Identifier))
             {
-                return BadRequest("Error: Please provide your E-mail address or username.");
+                return BadRequest("Please provide your E-mail Address or Username.");
             }
 
             var user = new User();
@@ -89,12 +89,12 @@
 
             if (user == null)
             {
-                return NotFound("Error: Wrong Credentials.");
+                return NotFound("Wrong Credentials.");
             }
 
             if (!_userHelper.VerifyPasswordHash(userInput.Password, user.Password))
             {
-                return NotFound("Error: Wrong Credentials.");
+                return NotFound("Wrong Credentials.");
             }
             string token = _userHelper.CreateToken(user);
 
