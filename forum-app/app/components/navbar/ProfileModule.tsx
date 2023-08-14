@@ -1,12 +1,18 @@
 'use client';
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { useStore } from '../../lib/store';
 import { CgProfile } from 'react-icons/cg';
 import { AiOutlinePlus, AiOutlineDown } from 'react-icons/ai';
 import styles from './ProfileModule.module.css';
 import Button from '../Button';
 
-const ProfileModule = () => {
+interface ProfileModuleProps {
+  openFunc: any;
+}
+
+const ProfileModule: React.FC<ProfileModuleProps> = ({
+  openFunc
+}) => {
   const { data: session, status} = useSession();
   const setModalOpen = useStore((store: any) => store.setModalOpen);
 
@@ -24,7 +30,7 @@ const ProfileModule = () => {
         <div className={styles.section}>
           <AiOutlinePlus className={styles.icon}/>
         </div>
-        <div className={styles.profile}>
+        <div className={styles.profile} onClick={openFunc}>
           <CgProfile className={styles.icon}/>
           <AiOutlineDown className={styles.small}/>
         </div>

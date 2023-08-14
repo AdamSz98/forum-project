@@ -1,0 +1,42 @@
+.outside {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.dropdown {
+  position: absolute;
+  width: 120px;
+  z-index: 2;
+  right: 0;
+  padding: 20px 0;
+  background-color: #fff;
+  border: 1px solid lightgray;
+  border-top: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  padding: 0 10px 10px;
+}
+
+.title {
+  font-size: 15px;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.option {
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px 20px;
+}
+
+.option:hover {
+  background: rgb(232, 232, 232);
+}
