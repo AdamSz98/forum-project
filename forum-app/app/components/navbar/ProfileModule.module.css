@@ -3,10 +3,17 @@
   height: 40px;
 }
 
+.container {
+  display: flex;
+}
+
 .section, .profile {
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.section {
+  margin-right: 15px;
 }
 
 .icon {

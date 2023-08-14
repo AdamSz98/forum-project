@@ -26,7 +26,7 @@ const ProfileModule: React.FC<ProfileModuleProps> = ({
 
   if(status == 'authenticated') {
     return (
-      <>
+      <div className={styles.container}>
         <div className={styles.section}>
           <AiOutlinePlus className={styles.icon}/>
         </div>
@@ -34,7 +34,7 @@ const ProfileModule: React.FC<ProfileModuleProps> = ({
           <CgProfile className={styles.icon}/>
           <AiOutlineDown className={styles.small}/>
         </div>
-      </>
+      </div>
     )
   }
 
