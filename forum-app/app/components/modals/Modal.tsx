@@ -3,15 +3,14 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useStore } from '../../lib/store';
 
 interface ModalProps {
-  isOpen?: boolean;
   children: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
-  isOpen,
   children
 }) => {
   const setModalOpen = useStore((store: any) => store.setModalOpen);
+  const isOpen = useStore((store: any) => store.modalOpen);
 
   if(isOpen) {
     return (

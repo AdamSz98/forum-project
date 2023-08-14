@@ -5,10 +5,9 @@ import { RiAliensFill } from 'react-icons/ri';
 import { BsSearch } from 'react-icons/bs';
 import Button from '../Button';
 import { useStore } from '../../lib/store';
+import ProfileModule from './ProfileModule';
 
 const Navbar = () => {
-  const setModalOpen = useStore((store: any) => store.setModalOpen);
-
   return (
     <nav className={styles.navbar}>
       <Link href="/" className={styles.logoContainer}>
@@ -27,9 +26,7 @@ const Navbar = () => {
           className={styles.searchInput}
         />
       </div>
-      <div className={styles.btnBox}>
-        <Button label="Log In" onClick={setModalOpen}/>
-      </div>
+      <ProfileModule />
     </nav>
   )
 }

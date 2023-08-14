@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { signIn } from 'next-auth/react';
+import { useStore } from '../../lib/store';
 import * as yup from 'yup';
 
 interface LoginFormProps {
@@ -15,6 +16,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
   switchFunc
 }) => {
   const [errorVisibility, setErrorVisibility] = useState(false);
+  const setModalOpen = useStore((store: any) => store.setModalOpen);
 
   const schema = yup.object().shape({
     identifier: yup.string().required().min(3),
@@ -31,12 +33,11 @@ const LoginForm: React.FC<LoginFormProps> = ({
       password: data.password,
       redirect: false,
     })
-    console.log(result);
 
     if(result!.error == null) {
       setErrorVisibility(false);
+      setModalOpen(false);
     } else {
-
       setErrorVisibility(true);
     }
   }
